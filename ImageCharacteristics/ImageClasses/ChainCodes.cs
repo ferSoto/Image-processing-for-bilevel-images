@@ -103,9 +103,9 @@ namespace ImageCharacteristics.ImageClasses
         /// <returns></returns>
         private Boolean isBorder(int row, int column)
         {
-            for (int i = Math.Max(0, row - 1); i < Math.Min(this.height, row + 2); i++)
-                for (int j = Math.Max(0, column - 1); j < Math.Min(this.width, column + 2); j++)
-                    if (this.image[i, j] == 0)
+            for (int i = (row - 1 >= 0 ? -1 : 0); i <= (row + 1 < this.height ? 1 : 0); i++)
+                for (int j = (column - 1 >= 0 ? -1 : 0); j <= (column + 1 < this.width ? 1 : 0); j++)
+                    if (this.image[row + i, column + j] == 0 && i * j == 0 && (i != 0 || j != 0))
                         return true;
             return false;
         }
